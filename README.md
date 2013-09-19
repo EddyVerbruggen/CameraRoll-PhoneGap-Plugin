@@ -1,0 +1,2 @@
+CameraRoll-PhoneGap-Plugin
+==========================
