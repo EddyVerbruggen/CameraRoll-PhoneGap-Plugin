@@ -27,8 +27,9 @@
  		</config-file>
  		<header-file src="src/ios/CameraRoll.h" />
  		<source-file src="src/ios/CameraRoll.m" />
+ 		<source-file src="src/ios/NSData+Base64.h" />
+ 		<source-file src="src/ios/NSData+Base64.m" />
 		<!--<framework src="EventKit.framework" />-->
-		<!--<framework src="EventKitUI.framework" />-->
  	</platform>
 
   <!-- android -->
