@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+      	xmlns:android="http://schemas.android.com/apk/res/android"
+        id="nl.x-services.plugins.cameraroll"
+        version="0.1">
+
+  <name>CameraRoll</name>
+
+  <description>
+    This plugin allows allows you to retrieve images from the cameraroll.
+  </description>
+
+  <license>MIT</license>
+
+  <engines>
+    <engine name="cordova" version=">=2.5.0"/>
+  </engines>
+
+  <asset src="www/CameraRoll.js" target="js/plugins/CameraRoll.js"/>
+
+  <!-- ios -->
+ 	<platform name="ios">
+ 		<config-file target="config.xml" parent="/*">
+ 			<feature name="CameraRoll">
+ 				<param name="ios-package" value="CameraRoll" />
+ 			</feature>
+ 		</config-file>
+ 		<header-file src="src/ios/CameraRoll.h" />
+ 		<source-file src="src/ios/CameraRoll.m" />
+		<!--<framework src="EventKit.framework" />-->
+		<!--<framework src="EventKitUI.framework" />-->
+ 	</platform>
+
+  <!-- android -->
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="plugins">
+      <plugin name="CameraRoll" value="nl.xservices.plugins.CameraRoll"/>
+    </config-file>
+    <source-file src="src/android/nl/xservices/plugins/CameraRoll.java" target-dir="src/android/nl/xservices/plugins"/>
+  </platform>
+
+</plugin>
