@@ -115,8 +115,8 @@ Counting the number of photos in the photo library:
 Find and show max 10 photos from the photo library:
 
 ```javascript
-  var maxAssets = 10;
-  window.plugins.cameraRoll.find(maxAssets, cameraRollFindResult, cameraRollError);
+  var maxPhotos = 10;
+  window.plugins.cameraRoll.find(maxPhotos, cameraRollFindResult, cameraRollError);
 
   function cameraRollFindResult(photos) {
     var content = '';
@@ -124,7 +124,8 @@ Find and show max 10 photos from the photo library:
       content += '<br/><img src="data:image/png;base64,'+photos[i]+'" style="max-width:240px"/>';
     }
     document.getElementById("imgContainer").innerHTML = content;
-}```
+}
+```
 
 
 ## 4. License
