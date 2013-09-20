@@ -105,7 +105,7 @@ Counting the number of photos in the photo library:
   // prep some variables
   var includePhotos = true;
   var includeVideos = false;
-  window.plugins.cameraRoll.count(includePhotos, includeVideos, cameraRollCountResult, cameraRollError);
+  window.plugins.cameraRoll.count(includePhotos, includeVideos, showImageCount, cameraRollError);
 
   function showImageCount(count) {
     alert("Found " + count + " photos");
