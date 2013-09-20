@@ -14,7 +14,7 @@ CameraRoll.prototype.count = function (includePhotos, includeVideos, successCall
     cordova.exec(successCallback, errorCallback, "CameraRoll", "count", [includePhotos, includeVideos]);
 };
 
-CameraRoll.prototype.find = function (max, includePhotos, includeVideos, successCallback, errorCallback) {
+CameraRoll.prototype.find = function (max, successCallback, errorCallback) {
     if (typeof errorCallback != "function") {
         console.log("CameraRoll.find failure: errorCallback parameter must be a function");
         return
@@ -24,7 +24,7 @@ CameraRoll.prototype.find = function (max, includePhotos, includeVideos, success
         console.log("CameraRoll.find failure: successCallback parameter must be a function");
         return
     }
-    cordova.exec(successCallback, errorCallback, "CameraRoll", "find", [max, includePhotos, includeVideos]);
+    cordova.exec(successCallback, errorCallback, "CameraRoll", "find", [max]);
 };
 
 CameraRoll.install = function () {

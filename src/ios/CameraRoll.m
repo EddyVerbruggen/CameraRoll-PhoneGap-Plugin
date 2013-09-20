@@ -48,23 +48,7 @@
 
     NSString *callbackId = [arguments pop];
     NSInteger max        = [[arguments objectAtIndex:0] integerValue];
-    BOOL includePhotos   = [[arguments objectAtIndex:1] boolValue];
-    BOOL includeVideos   = [[arguments objectAtIndex:2] boolValue];
     
-    ALAssetsFilter *filter;
-    if (includePhotos && includeVideos) {
-        filter = [ALAssetsFilter allAssets];
-    } else if (includePhotos) {
-        filter = [ALAssetsFilter allPhotos];
-    } else if (includeVideos) {
-        filter = [ALAssetsFilter allVideos];
-    } else {
-        // nothing, so return error
-        CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-        [self writeJavascript:[result toErrorCallbackString:callbackId]];
-        return;
-    }
-
     NSMutableArray *photos = [[NSMutableArray alloc] init];
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     [library enumerateGroupsWithTypes:ALAssetsGroupAll
@@ -72,7 +56,7 @@
                             if (group == nil) {
                                 return;
                             }
-                            [group setAssetsFilter:filter];
+                            [group setAssetsFilter:[ALAssetsFilter allPhotos]];
                             [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *innerStop) {
                                 if (result == nil) {
                                     return;
@@ -80,6 +64,7 @@
                                 NSURL *urld = (NSURL*) [[result defaultRepresentation]url];
                                 NSData *imageData = [NSData dataWithContentsOfURL:urld];
                                 NSString *base64EncodedImage = [imageData base64EncodedString];
+
                                 [photos addObject:base64EncodedImage];
                                 if (photos.count == max) {
                                     *innerStop = YES;
