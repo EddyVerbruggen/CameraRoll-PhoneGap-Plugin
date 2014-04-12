@@ -1,6 +1,8 @@
 # PhoneGap CameraRoll plugin
 
-for iOS and (soon) Android, by [Eddy Verbruggen](http://www.x-services.nl)
+> WARNING: April 12th, 2014: this plugin is in a dormant state. It only supports iOS a little. You're better off not using this. I may pick this up in the future... but for now: look elsewhere.
+
+for iOS, by [Eddy Verbruggen](http://www.x-services.nl)
 
 1. [Description](https://github.com/EddyVerbruggen/CameraRoll-PhoneGap-Plugin#1-description)
 2. [Installation](https://github.com/EddyVerbruggen/CameraRoll-PhoneGap-Plugin#2-installation)
