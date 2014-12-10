@@ -3,7 +3,7 @@
 
 @interface CameraRoll : CDVPlugin
 
-- (void)count:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
-- (void)find:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+- (void)count:(CDVInvokedUrlCommand*)command;
+- (void)find:(CDVInvokedUrlCommand*)command;
 
 @end

@@ -16,7 +16,8 @@ for iOS, by [Eddy Verbruggen](http://www.x-services.nl)
 
 This plugin allows you to use photos from the cameraroll (photo album) of the mobile device.
 
-* Compatible with [Cordova Plugman](https://github.com/apache/cordova-plugman) and ready for PhoneGap 3.0
+* For Cordova 3+
+* Compatible with [Cordova Plugman](https://github.com/apache/cordova-plugman)
 * Submitted and waiting for approval at PhoneGap Build ([more information](https://build.phonegap.com/plugins))
 * You can count the total number of photos and/or videos.
 * You can find photos only (videos would likely crash your app).
@@ -27,12 +28,12 @@ This plugin allows you to use photos from the cameraroll (photo album) of the mo
 * Supported methods: `find`, `count`.
 
 ### Android specifics
-* Work in progress.. support will be added soon
+* Work in progress..
 
 ## 2. Installation
 
 ### Automatically (CLI / Plugman)
-Calendar is compatible with [Cordova Plugman](https://github.com/apache/cordova-plugman) and ready for the [PhoneGap 3.0 CLI](http://docs.phonegap.com/en/3.0.0/guide_cli_index.md.html#The%20Command-line%20Interface_add_features), here's how it works with the CLI:
+CameraRoll is compatible with [Cordova Plugman](https://github.com/apache/cordova-plugman) and ready for the [PhoneGap 3.0 CLI](http://docs.phonegap.com/en/3.0.0/guide_cli_index.md.html#The%20Command-line%20Interface_add_features), here's how it works with the CLI:
 
 ```
 $ phonegap local plugin add https://github.com/EddyVerbruggen/CameraRoll-PhoneGap-Plugin.git

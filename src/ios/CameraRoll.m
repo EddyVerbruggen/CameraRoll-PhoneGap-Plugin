@@ -5,11 +5,10 @@
 @implementation CameraRoll
 
 
--(void)count:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options {
+-(void)count:(CDVInvokedUrlCommand*)command {
     
-    NSString *callbackId = [arguments pop];
-    BOOL includePhotos   = [[arguments objectAtIndex:0] boolValue];
-    BOOL includeVideos   = [[arguments objectAtIndex:1] boolValue];
+    BOOL includePhotos = [command.arguments objectAtIndex:0];
+    BOOL includeVideos = [command.arguments objectAtIndex:1];
 
     ALAssetsFilter *filter;
     if (includePhotos && includeVideos) {
@@ -20,8 +19,8 @@
         filter = [ALAssetsFilter allVideos];
     } else {
         // nothing, so return error
-        CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-        [self writeJavascript:[result toErrorCallbackString:callbackId]];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"no result"];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         return;
     }
 
@@ -33,22 +32,22 @@
                                    [group setAssetsFilter:filter];
                                    numAssets += group.numberOfAssets;
                                }
-                               CDVPluginResult* result = [CDVPluginResult resultWithStatus: CDVCommandStatus_OK messageAsInt:numAssets];
-                               [self writeJavascript:[result toSuccessCallbackString:callbackId]];
+                                CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsInt:numAssets];
+                              [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
                            }
      
                          failureBlock:^(NSError *err) {
-                             CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-                             [self writeJavascript:[result toErrorCallbackString:callbackId]];
+                          NSLog(@"%@", [err localizedDescription]);
+                           CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:err.localizedDescription];
+                           [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
                          }];
 }
 
 
--(void)find:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options {
+-(void)find:(CDVInvokedUrlCommand*)command {
 
-    NSString *callbackId = [arguments pop];
-    NSInteger max        = [[arguments objectAtIndex:0] integerValue];
-    
+    NSInteger max = [[command.arguments objectAtIndex:0] integerValue];
+  
     NSMutableArray *photos = [[NSMutableArray alloc] init];
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     [library enumerateGroupsWithTypes:ALAssetsGroupAll
@@ -72,16 +71,16 @@
                             }];
 
                             if (photos.count > 0) {
-                                CDVPluginResult* result = [CDVPluginResult resultWithStatus: CDVCommandStatus_OK messageAsArray:photos];
-                                [self writeJavascript:[result toSuccessCallbackString:callbackId]];
+                              CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:photos];
+                              [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
                             } else {
-                                CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-                                [self writeJavascript:[result toErrorCallbackString:callbackId]];
+                              CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+                              [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
                             }
                         } failureBlock:^(NSError *error) {
                             NSLog(@"%@", [error localizedDescription]);
-                            CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-                            [self writeJavascript:[result toErrorCallbackString:callbackId]];
+                            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
+                            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
                         }];
 }
 

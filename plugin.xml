@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
       	xmlns:android="http://schemas.android.com/apk/res/android"
         id="nl.x-services.plugins.cameraroll"
-        version="0.1">
+        version="0.2.0">
 
   <name>CameraRoll</name>
 
@@ -13,7 +13,7 @@
   <license>MIT</license>
 
   <engines>
-    <engine name="cordova" version=">=2.5.0"/>
+    <engine name="cordova" version=">=3.0.0"/>
   </engines>
 
   <asset src="www/CameraRoll.js" target="js/plugins/CameraRoll.js"/>
@@ -29,7 +29,6 @@
  		<source-file src="src/ios/CameraRoll.m" />
  		<source-file src="src/ios/NSData+Base64.h" />
  		<source-file src="src/ios/NSData+Base64.m" />
-		<!--<framework src="EventKit.framework" />-->
  	</platform>
 
   <!-- android -->

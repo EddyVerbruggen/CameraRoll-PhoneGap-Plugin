@@ -14,6 +14,7 @@ CameraRoll.prototype.count = function (includePhotos, includeVideos, successCall
     cordova.exec(successCallback, errorCallback, "CameraRoll", "count", [includePhotos, includeVideos]);
 };
 
+// TODO add resulttype: random, oldest, newest (enum)
 CameraRoll.prototype.find = function (max, successCallback, errorCallback) {
     if (typeof errorCallback != "function") {
         console.log("CameraRoll.find failure: errorCallback parameter must be a function");
